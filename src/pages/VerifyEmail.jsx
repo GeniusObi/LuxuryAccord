@@ -3,8 +3,8 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { account } from '../appWriteConfig,';
 const VerifyEmail = () => {
   const [params] = useSearchParams();
-  const secret = params.get('secret');
-  const id = params.get('userId');
+  const userSecret = params.get('secret');
+  const userId = params.get('userId');
   //   if(secret && id){
   //     const result = await account.updateVerification(
   //     '<USER_ID>', // userId
@@ -12,14 +12,14 @@ const VerifyEmail = () => {
   // );
   //   }
   const navigate = useNavigate();
-  async function verifiedEmail(a, b) {
+  async function verifiedEmail(secret, id) {
     const promise = await account.updateVerification(
       id, // userId
       secret // secret
     );
     return promise;
   }
-  const response = verifiedEmail(secret, id);
+  const response = verifiedEmail(userSecret, userId);
   navigate('/login');
 
   response
