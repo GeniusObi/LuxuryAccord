@@ -11,12 +11,12 @@ import Success from './Success';
 import Cancel from './Cancel';
 import Login from './Login';
 import Register from './Register';
-import Verify from './Verify';
-import Email from './Email';
+
+import VerifyEmail from './VerifyEmail';
+import EmailVerified from './EmailVerified';
 
 export {
-  Email,
-  Verify,
+  EmailVerified,
   Register,
   Login,
   Home,
@@ -30,4 +30,5 @@ export {
   AuthWrapper,
   Success,
   Cancel,
+  VerifyEmail,
 };

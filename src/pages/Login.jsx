@@ -1,13 +1,34 @@
 import React, { useState } from 'react';
 import { useUserContext } from '../context/user_context';
+import { useNavigate } from 'react-router-dom';
+import { account } from '../appWriteConfig,';
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ email: '', password: '' });
-  const { handleUserLogin } = useUserContext();
+  const navigate = useNavigate();
   const handleInputChange = (e) => {
     e.preventDefault();
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
-    console.log(credentials);
+  };
+  const handleUserLogin = async (e, credentials) => {
+    e.preventDefault();
+    try {
+      const promiseCreateEmailPasswordSession =
+        await account.createEmailPasswordSession(
+          credentials.email,
+          credentials.password
+        );
+      console.log(
+        'this is promise of the created email password session',
+        promiseCreateEmailPasswordSession
+      );
+
+      navigate('/');
+    } catch (error) {
+      console.log('this is the error upon loggin in user', error);
+    } finally {
+      e.target.reset();
+    }
   };
   return (
     <section className="h-screen  grid place-items-center">

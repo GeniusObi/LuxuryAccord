@@ -1,8 +1,8 @@
 import React from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { account } from '../appWriteConfig,';
 
-const Verify = () => {
+const EmailVerified = () => {
   const [params] = useSearchParams();
   const secret = params.get('secret');
   const id = params.get('userId');
@@ -12,6 +12,7 @@ const Verify = () => {
   //     '<SECRET>' // secret
   // );
   //   }
+  const navigate = useNavigate();
   async function verifiedEmail(secret, id) {
     const response = await account.updateVerification(
       id, // userId
@@ -23,7 +24,7 @@ const Verify = () => {
     .then((response) => {
       console.log(response);
     })
-    .then(() => setTimeout(() => window.location.replace('/'), 3000))
+    .then(() => navigate('/login'))
     .catch((error) => console.log(error));
 
   return (
@@ -33,4 +34,4 @@ const Verify = () => {
   );
 };
 
-export default Verify;
+export default EmailVerified;

@@ -1,4 +1,5 @@
 import { Client, Account, Databases, ID } from 'appwrite';
+import { redirect } from 'react-router-dom';
 
 export const PROJECT_ID = '6655fe68003adf1d782c';
 const client = new Client()
@@ -8,25 +9,22 @@ export const account = new Account(client);
 export const handleRegisterSubmit = async (e, credentials) => {
   e.preventDefault();
   try {
-    const response = await account.create(
+    const promiseCreatedUser = await account.create(
       ID.unique(),
       credentials.email,
       credentials.password,
       credentials.name
     );
-    console.log(response);
+    console.log('this is promise of the created user', promiseCreatedUser);
+    redirect('/login');
 
-    const session = await account.createEmailPasswordSession(
-      credentials.email,
-      credentials.password
-    );
+    // const promiseVerifyEmail = await account.createVerification(
+    //   `http://localhost:5173/verification`
+    // );
 
-    const verifyEmail = await account.createVerification(
-      `${window.location.origin}/verification`
-    );
-    return verifyEmail;
+    // console.log('this is promise of the verify email', promiseVerifyEmail);
   } catch (error) {
-    console.log('There was an error with the registration. Please try again.');
+    console.log('this is the error upon creating user', error);
   }
 };
 export const database = new Databases(client);

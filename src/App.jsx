@@ -15,8 +15,7 @@ import {
   Cancel,
   Login,
   Register,
-  Verify,
-  Email,
+  VerifyEmail,
 } from './pages';
 function App() {
   return (
@@ -26,18 +25,19 @@ function App() {
         <Sidebar />
         <Routes>
           <Route path="/" exact element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="cart" element={<Cart />} />
-          <Route path="products" element={<Products />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/products" element={<Products />} />
           <Route path="products/:id" element={<SingleProduct />} />
-          <Route path="success" element={<Success />} />
-          <Route path="cancel" element={<Cancel />} />
-          <Route path="login" element={<Login />} />
+          <Route path="/success" element={<Success />} />
+          <Route path="/cancel" element={<Cancel />} />
+          <Route path="/login" element={<Login />} />
           {/* <Route path="email" element={<Email />} /> */}
-          <Route path="verification" element={<Verify />} />
-          <Route path="register" element={<Register />} />
+          <Route path="/verify-email" element={<VerifyEmail />} />
+
+          <Route path="/register" element={<Register />} />
           <Route
-            path="checkout"
+            path="/checkout"
             element={
               <PrivateRoute>
                 <Checkout />
