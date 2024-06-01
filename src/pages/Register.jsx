@@ -50,6 +50,9 @@ const Register = () => {
             'this is promise of the verify email',
             promiseVerifyEmail
           );
+          if (promiseVerifyEmail) {
+            navigate('/verify-email');
+          }
         }
       } catch (error) {
         console.log('this is the error upon verifcation of user', error);
