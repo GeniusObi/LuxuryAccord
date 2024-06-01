@@ -44,7 +44,7 @@ const Register = () => {
 
         if (getSessionobject) {
           const promiseVerifyEmail = await account.createVerification(
-            'https://localhost:5173/verify-email'
+            'https://luxury-accord.vercel.app/verify-email'
           );
           console.log(
             'this is promise of the verify email',
